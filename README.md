@@ -98,11 +98,27 @@ after storage becomes available to restore saved levels.
 | Apple AirPods Max USB Audio | UAC2 | `05ac:110c` | USB-A-to-USB-C cable | Output |
 | [SPACETOUCH USB Audio](https://www.amazon.com.au/dp/B0GT9K55KX) | UAC1 | `0666:0880` | USB-A | Output and Microphone |
 | Sennheiser MOMENTUM 3 Wireless | UAC1 | `1377:6004` | USB-A-to-USB-C cable | Output |
+| FiiO K3 | UAC1 (Class 1.0 mode) | `7229:4700` | USB-A-to-USB-C cable | Output |
 
 Compatibility is determined from each device's USB Audio descriptors, not
 from a device allowlist. Other devices may work, but not every UAC1 or UAC2
 format or topology is supported. Testing was performed on retail kernel
 `2.0.17559.0`.
+
+### FiiO K3 setup
+
+The K3 supports both USB Audio Class 1 and Class 2. Start with the K3's USB
+Audio Class switch set to **1.0**: this plugin targets full-speed stereo
+playback at 48 kHz, while the K3's higher-rate UAC2 modes are outside its
+supported profile. FiiO describes Class 1 mode as driverless and supporting up
+to 96 kHz/24-bit; the plugin will use a compatible 48 kHz format when the
+device advertises one.
+
+After changing the switch, power-cycle the K3 or disconnect and reconnect its
+USB cable, then connect it to the Xbox and reboot. The K3 was tested in Class
+1.0 mode with 48 kHz stereo output on kernel `2.0.17559.0`. Its USB ID in this
+mode is `7229:4700`. If it does not work in your setup, capture
+`usb_audio360.log` and the Device Properties screen as described below.
 
 ## Device information and troubleshooting
 
